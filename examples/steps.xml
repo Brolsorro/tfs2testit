@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<steps id="0" last="20">
+   <step id="5" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&lt;B&gt;Предусловия&lt;/B&gt;:&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="7" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;СУБД установлена&lt;BR/&gt;(пути директорий установки и данных указаны по умолчанию)&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="9" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;Служба &quot;JatobaServer&quot; запущена&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="8" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&lt;B&gt;Сценарий&lt;/B&gt;:&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="6" type="ValidateStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;Остановить службу &quot;JatobaServer&quot;:&lt;BR/&gt;net stop JatobaServer&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;Служба &quot;JatobaServer&quot; останавливается.
+Служба &quot;JatobaServer&quot; успешно остановлена.&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="11" type="ValidateStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;Выполнить удаление СУБД&lt;BR/&gt;Перейти в директорию с установщиком, нажать на него ПКМ и&amp;nbsp;выбрать &quot;Удалить&quot;, затем нажать &quot;Да&quot; в диалоговом окне&lt;BR/&gt;- &lt;I&gt;ИЛИ&lt;BR/&gt;&lt;/I&gt;Перейти в Панель управления &amp;gt; Программы и компоненты, выбрать &quot;Jatoba&quot; и нажать &quot;Да&quot; в диалоговом окне&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;Удаление успешно завершено&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="12" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;Перейти в директорию, где содержится корневой каталог СУБД, по умолчанию:&lt;BR/&gt;C:\Program Files&lt;BR/&gt;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="13" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;DIV&gt;&lt;P&gt;Нажать ПКМ по каталогу &quot;GIS&quot; и выбрать &quot;Свойства&quot; &amp;gt; &quot;Безопасность&quot;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="14" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;Нажать &quot;Дополнительно&quot;, затем &quot;Изменить&quot; владельца с &quot;СИСТЕМА&quot; на &quot;Администратор&quot; (либо на любого другого пользователя, к которому есть доступ и от которого выполнен вход&lt;BR/&gt;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="15" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;DIV&gt;&lt;P&gt;Установить чекбоксы &quot;Заменить все записи разрешений дочернего объекта...&quot; и &quot;Заменить владельца подконтейнеров и объектов&quot;, затем нажать &quot;ОК&quot;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="16" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;DIV&gt;&lt;P&gt;В диалоговом окне нажать &quot;Да&quot;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="17" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;Выполнить удаление корневого каталога СУБД&amp;nbsp;(Shift+Del)&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="18" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;Выполнить удаление созданного в ходе установки СУБД системного пользователя:&lt;BR/&gt;&lt;BR/&gt;Перейти в WIN+R &amp;gt; lusrmgr.msc &amp;gt; Пользователи&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="19" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;Выбрать созданного пользователя (по умолчанию postgres), нажать ПКМ и &quot;Удалить&quot;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+   <step id="20" type="ActionStep">
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;В диалоговом окне нажать &quot;Да&quot;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <parameterizedString isformatted="true">&lt;DIV&gt;&lt;P&gt;&amp;nbsp;&lt;/P&gt;&lt;/DIV&gt;</parameterizedString>
+      <description/>
+   </step>
+</steps>
