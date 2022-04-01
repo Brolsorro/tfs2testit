@@ -4,3 +4,4 @@ reports
 token_testit.txt
 token.txt
 config.ini
+__pycache__
