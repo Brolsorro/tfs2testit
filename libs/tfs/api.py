@@ -1,10 +1,7 @@
 import logging
-from tarfile import ENCODING
-from xml.etree.ElementTree import VERSION
 import requests
 import base64
 import json
-import traceback
 import os
 import logging
 
