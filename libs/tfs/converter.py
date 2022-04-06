@@ -1,7 +1,5 @@
-from importlib.resources import path
 import json
 import logging
-from pickle import NONE
 
 import xml.etree.ElementTree as ET
 
@@ -80,8 +78,15 @@ class TestsConverter:
 
         return link
 
-    def _replacer(self,string:str):
-        
+    def _replacer(self,string:str)->str:
+        """Функция для замены ненужных тэгов на аналогичные или альтернативные строки
+
+        Args:
+            string (str): Строка для замены
+
+        Returns:
+            str: Изменная строка
+        """
         # TODO: У некоторых тестов не удаляются блоки тэгов
         # Например тест "Автоматическая активация без разрешения"
         replaceTo = {
@@ -109,8 +114,21 @@ class TestsConverter:
         # FIXME: Если бы testIT поддерживал markdown - то можно было бы указать **
         return string
 
-    def recursive_nesting_traversal(self, suite_id, suite_index, suite_tree_static, suite_tree, suite_tree_index):
+    def _recursive_nesting_traversal(self, suite_id, suite_index, suite_tree_static, suite_tree, suite_tree_index):
+        """Рекурсивный обход полученного JSON через API для преобразования его иерархическое дерево
+        с уникальнами ID и привязанным к ним сущностям. Один ко многим
 
+        Args:
+            suite_id (_type_): Первичный ID для сопоставления
+            suite_index (_type_): Индекс смещения в словаре, с местоположение сущности с первичным ID
+            suite_tree_static (_type_): Неизменяемая коллекция с оставшимися для связи сущностями
+            suite_tree (_type_): Изменяемая коллекция с оставшимися для связи сущностями
+            suite_tree_index (_type_): Индекс для изменения по срезу содержимого изменяемой сущности
+        Returns:
+            Нет возврата так, как идет работа с глобальными объектами класса
+
+        """
+        
         # Получить номер элементы для замены вложенности
         suiteMainIndex = [i for i, v in enumerate(
             suite_tree_static) if v['id'] == suite_id]
@@ -128,13 +146,22 @@ class TestsConverter:
 
         if LINK_subChildIds:
             for sub_index, sub_child_id in enumerate(LINK_subChildIds):
-                self.recursive_nesting_traversal(
+                self._recursive_nesting_traversal(
                     sub_child_id, sub_index, suite_tree_static, LINK_childIds, suite_index)
         del suite_tree_static[suiteMainIndex]
+
         return
 
 
-    def _parse_steps(self,steps_string,**kwargs):
+    def _parse_steps(self,steps_string:str,**kwargs) -> list:
+        """Парсинг шагов для тестов и распределение их на "актуальное" и "ожидание"
+
+        Args:
+            steps_string (str): Строка с шагами
+
+        Returns:
+            list: Список с распределенными шагами
+        """
         case_id = kwargs.get('case_id','')
         # logging.info(f'Обработка шагов теста № {case_id}')
         try:
@@ -152,7 +179,16 @@ class TestsConverter:
 
         return stepsList
 
-    def _load_content_test(self, id_plan,suite_id):
+    def _load_content_test(self, id_plan:Union[str,int],suite_id:Union[str,int]) -> list:
+        """Выгрузка тестов по набору тетстов
+
+        Args:
+            id_plan (Union[str,int]): ID плана
+            suite_id (Union[str,int]): ID тестового набора
+
+        Returns:
+            list: Набор тестов
+        """
         # logging.info(f"Plan ID: {id_plan} Suite ID: {suite_id}")
         testCaseIds = self.api.get_tests_from_suite(id_plan,suite_id)['response']['testCaseIds']
         tests = []
@@ -172,12 +208,17 @@ class TestsConverter:
         
         return tests
 
-    def get_tree_ids(self, id_plan):
+    def _get_tree_ids(self, id_plan:Union[str,int]):
+        """Получить дерево сьюитов без тестов
+        Args:
+            id_plan (Union[str,int]): ID плана
+
+        Returns:
+            _type_: _description_
+        """
         suitesTree = []
         root_id = id_plan
 
-    
-        # System.IterationPath
         rSuite = self.api.get_test_suites_from_plan(root_id)['response']
         allSuites = rSuite['testSuites']
         logging.info(f"Plan ID: {id_plan}")
@@ -215,12 +256,18 @@ class TestsConverter:
     
         for index, suite_id in enumerate(suiteIdsPre):
             # Для внутреннего слоя
-            self.recursive_nesting_traversal(
+            self._recursive_nesting_traversal(
                 suite_id, index, suitesTree, suitesTree, suiteIndexRoot)
 
         return suitesTree
 
     def _generate_tests(self,cases:ET.SubElement, test:dict):
+        """Генерация тестов для представление их в XML
+
+        Args:
+            cases (ET.SubElement): Ссылка на размещение теста в XML коллекции
+            test (dict): Непреобразованный тест
+        """
         case = ET.SubElement(cases,"case")
         title = ET.SubElement(case,"title")
         template = ET.SubElement(case,"template")
@@ -249,8 +296,16 @@ class TestsConverter:
             content.text = step[0]
             expected.text = step[1]
 
-    def convert_json_to_xml(self,plan_id):
-        jsonSuites = self.get_tree_ids(plan_id)
+    def convert_json_to_xml(self,plan_id:Union[str,int]):
+        """Преобразование словаря в XML
+
+        Args:
+            plan_id (Union[str,int]): ID плана
+
+        Returns:
+            _type_: Готовая XML коллекция для записи в файл
+        """
+        jsonSuites = self._get_tree_ids(plan_id)
         root = ET.Element('suite')
         
         logging.info(f"Convert created JSON to XML")
