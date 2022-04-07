@@ -2,7 +2,7 @@ import logging
 import requests
 import base64
 import json
-import os
+import os, sys
 import logging
 
 from pathlib import Path
@@ -25,10 +25,10 @@ class APITFS:
 
         logging.basicConfig(encoding='utf-8', level=logging.INFO)
 
-    def _write_json_response(self, response:Response):
+    def _handler_response(self, response:Response):
         # name_file = traceback.extract_stack(None, 3)[0][2]
         # name_file = Path(f'reports/{name_file}.json')
-        error_name = Path('reports/error.html')
+        # error_name = Path('reports/error.html')
         responseJson = None
         try:
             # if name_file.exists():
@@ -40,12 +40,14 @@ class APITFS:
 
         except json.JSONDecodeError:
             ...
-            if error_name.exists():
-                os.remove(error_name)
-            if response.status_code != 200:
+            logging.error('Указан невереный параметр: проект, коллекция, номер тестового плана...')
+            sys.exit(1)
+            # if error_name.exists():
+            #     os.remove(error_name)
+            # if response.status_code != 200:
                 # responseJson = {'error':response.text}
-                with open(error_name, 'wb') as wr:
-                    wr.write(response.content)
+                # with open(error_name, 'wb') as wr:
+                #     wr.write(response.content)
         return responseJson
     
     def _get_request(self, url:str,set_api_version=True):
@@ -61,7 +63,7 @@ class APITFS:
         response = requests.get(url, verify=self.verify, headers=headers)
         # logging.info(response.url)
 
-        rt_json=self._write_json_response(response)
+        rt_json=self._handler_response(response)
         return {'response':rt_json, 'status': response.status_code}
 
     def _post_request(self, url:str, body:dict):
@@ -74,7 +76,7 @@ class APITFS:
                             headers=headers, json=body, data=json.dumps(body))
 
         # logging.info(response.url)
-        rt_json=self._write_json_response(response)
+        rt_json=self._handler_response(response)
 
         return {'response':rt_json, 'status': response.status_code}
     def get_any(self,*args, **kwargs):

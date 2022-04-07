@@ -5,3 +5,6 @@ token_testit.txt
 token.txt
 config.ini
 __pycache__
+build
+main.spec
+dist
