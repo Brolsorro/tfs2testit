@@ -24,21 +24,20 @@ if not CONFIG_PATH.exists():
     raise SystemExit(1)
 
 
-config = configparser.ConfigParser()
-config.read(CONFIG_PATH)
-try:
-    token = config['TFS Settings']['tokenTfs']
-    tokenTestIt = None
-    # tokenTestIt = config['TestIT Settings']['tokenTestIT']
-    address_tfs = config['TFS Settings']['addressTFS']
-    address_testIt = None
-    # address_testIt = config['TestIT Settings']['addressTestIT']
-except KeyError as e:
-    logging.error(f'Не указан параметр в конфиге {e}\n')
-
-
 if __name__ == '__main__':
     options = getCommandLine()
+    config = configparser.ConfigParser()
+    config.read(CONFIG_PATH)
+    try:
+        if options.action == 'to-xml':
+            address_tfs = config['TFS Settings']['addressTFS']
+            tokenTfs = config['TFS Settings']['tokenTfs']
+            
+        if options.action == 'to-api':
+            tokenTestIt = config['TestIT Settings']['tokenTestIT']
+            address_testIt = config['TestIT Settings']['addressTestIT']
+    except KeyError as e:
+        logging.error(f'Не указан параметр в конфиге {e}\n')
 
     if options.action == 'to-xml':
         organization = options.collection
@@ -48,7 +47,7 @@ if __name__ == '__main__':
             address_tfs,
             organization,
             project,
-            token,
+            tokenTfs,
             cert
         )
         idPlan = options.id
@@ -61,6 +60,9 @@ if __name__ == '__main__':
         address_testIt,
         tokenTestIt,
         )
-        a = apiTestIt.get_project_by_name('Тестовый')
+        b = apiTestIt.get_project_by_name('test')
+        sections = apiTestIt.get_sections_on_project(b['id'])
+        # a = apiTestIt.create_test_suite()
+        a = apiTestIt.create_test_case()
         print(a)
-
+        ...

@@ -3,9 +3,13 @@ import logging
 import json
 import os
 
+
 from requests import Response
 from pathlib import Path
 from enum import Enum
+from uuid import UUID
+
+
 
 
 class _RequestTypes(Enum):
@@ -44,7 +48,7 @@ class TestITAPI:
                     wr.write(response.content)
         return responseJson
 
-    def _request(self, type_request: _RequestTypes, url: str):
+    def _request(self, type_request: _RequestTypes, url: str, data:dict=None):
 
         headers = {
             'Authorization': f'PrivateToken {self.token}',
@@ -54,7 +58,7 @@ class TestITAPI:
         if type_request is _RequestTypes.GET:
             response = requests.get(url, verify=self.verify, headers=headers)
         elif type_request is _RequestTypes.POST:
-            ...
+            response = requests.post(url, verify=self.verify, headers=headers,json=data)
         elif type_request is _RequestTypes.DELETE:
             ...
         logging.info(response.url)
@@ -70,7 +74,7 @@ class TestITAPI:
         return rps
 
     def get_project_by_name(self, name_project: str):
-        name = "Тестовый"
+        name = name_project
         projects = self.get_all_projects()
         idProject = [v['id'] for v in projects if v['name'] == name]
         if not idProject:
@@ -81,13 +85,92 @@ class TestITAPI:
 
     def get_sections_on_project(self, id_project: str):
         return self._request(_RequestTypes.GET,
-                      '/api/v2/projects/{projectId}/sections')
+                      f'/api/v2/projects/{id_project}/sections')
 
     def create_test_suite(self):
         data = {
-            "parentId": "2ec66cb5-cd34-4a7c-8608-e97d2dfbeb91",
-            "testPlanId": "2ec66cb5-cd34-4a7c-8608-e97d2dfbeb91",
             "name": "base test suite"
         }
-        rps = self._request(_RequestTypes.POST, '/api/v2/testSuites')
+        rps = self._request(_RequestTypes.POST, '/api/v2/testSuites',data=data)
+        return rps
+
+    def create_test_case(self, id_project:UUID,id_section:UUID):
+        data = {
+            "entityTypeName": "TestCases",
+            "description": "This is a basic test template",
+            "state": "NeedsWork",
+            "priority": "Lowest",
+            "steps": [
+                {
+                "action": "User press the button",
+                "expected": "System makes a beeeep sound",
+                "testData": "Some variables values",
+                "comments": "Comment on what to look for",
+                }
+            ],
+            "preconditionSteps": [
+                {
+
+                "action": "User press the button",
+                "expected": "System makes a beeeep sound",
+                "testData": "Some variables values",
+                "comments": "Comment on what to look for",
+   
+                }
+            ],
+            "postconditionSteps": [
+                {
+                "action": "User press the button",
+                "expected": "System makes a beeeep sound",
+                "testData": "Some variables values",
+                "comments": "Comment on what to look for",
+                }
+            ],
+            "duration": 10000,
+            "attributes": {},
+            "tags": [
+                {
+                "name": "string"
+                }
+            ],
+            "attachments": [
+                {
+                "id": "a834ed64-2d73-448e-9d46-a5027d832d35"
+                }
+            ],
+            "iterations": [
+                {
+                "parameters": [
+                    {
+                    "id": "a834ed64-2d73-448e-9d46-a5027d832d35"
+                    }
+                ],
+                "id": "00000000-0000-0000-0000-000000000000"
+                }
+            ],
+            "links": [
+                {
+                "title": "string",
+                "url": "https://google.com/",
+                "description": "This link leads to google main page (no advertising)",
+                "type": "Related",
+                "hasInfo": True
+                }
+            ],
+            "name": "Basic template",
+            "projectId": id_project,
+            "sectionId": id_section,
+            "autoTests": [
+                {
+                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                }
+            ]
+            }
+        # del data['steps']
+        # del data['preconditionSteps']
+        # del data['postconditionSteps']
+        del data['attachments']
+        del data['iterations']
+        del data['autoTests']
+        rps = self._request(_RequestTypes.POST, '/api/v2/workItems',data=data)
         return rps

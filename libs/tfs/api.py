@@ -1,4 +1,5 @@
 import logging
+from cv2 import log
 import requests
 import base64
 import json
@@ -38,9 +39,10 @@ class APITFS:
             # with open(name_file, 'w',encoding=self.ENCODING) as wr:
             #     wr.write(json.dumps(res,indent=4,ensure_ascii=False))
 
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
             ...
-            logging.error('Указан невереный параметр: проект, коллекция, номер тестового плана...')
+            logging.error(f'Указан невереный параметр: проект <{self.project}>, коллекция <{self.organization}>, номер тестового плана...')
+            logging.error(e)
             sys.exit(1)
             # if error_name.exists():
             #     os.remove(error_name)
