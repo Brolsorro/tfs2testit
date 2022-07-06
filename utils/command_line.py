@@ -17,5 +17,8 @@ def getCommandLine() -> argparse.ArgumentParser:
     subparser.add_argument('--collection','-ct',required=True,type=str,help='Название коллекции')
     subparser.add_argument('--cert','-c',required=False,type=Path,help='Сертификат для доступа к TFS',default=None)
 
-
+    subparser = action.add_parser('to-api',help='Скачивание и конвертация тестов с TFS и доставка по API в TestIT',add_help=False)
+    subparser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS,
+                    help='Показывает команды для конверта в xml')
+                    
     return parser.parse_args()

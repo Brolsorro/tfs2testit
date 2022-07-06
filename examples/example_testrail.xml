@@ -1,95 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite>
-	<id>S1</id>
-	<name>Master</name>
-	<description></description>
-	<sections>
-		<section>
-		<name>dsd</name>
-		<description>ds</description>
-						
-		<cases>
-									
-						<case>
-				<id>C1</id>
-				<title>dsd</title>
-												<template>Test Case (Text)</template>
-																<type>Other</type>
-																<priority>Medium</priority>
-																<estimate></estimate>
-																								<references>211</references> 
-																				<custom>
-										<automation_type><id>0</id><value> None</value></automation_type>
-										<dsadd>https://google.com</dsadd>
-										<steps>&lt;fsgdfg&lt;
+    <id>S1</id>
+    <name>Master</name>
+    <description></description>
+    <sections>
+        <section>
+            <name>dsd</name>
+            <description>ds</description>
+
+            <cases>
+
+                <case>
+                    <id>C1</id>
+                    <title>dsd</title>
+                    <template>Test Case (Text)</template>
+                    <type>Other</type>
+                    <priority>Medium</priority>
+                    <estimate></estimate>
+                    <references>211</references>
+                    <custom>
+                        <automation_type>
+                            <id>0</id>
+                            <value> None</value>
+                        </automation_type>
+                        <dsadd>https://google.com</dsadd>
+                        <steps>&lt;fsgdfg&lt;
 ds
 d
 s
 d</steps>
-									</custom>
-							</case>
-												
-						<case>
-				<id>C2</id>
-				<title>dsd</title>
-												<template>Test Case (Steps)</template>
-																<type>Other</type>
-																<priority>Medium</priority>
-																<estimate></estimate>
-																								<references>21</references> 
-																				<custom>
-										<automation_type><id>0</id><value> None</value></automation_type>
-										<preconds>d</preconds>
-										<steps_separated><step>
-<shared_step_id>1</shared_step_id></step>
-<step>
-<content>dsd</content><expected>dsd</expected></step>
-</steps_separated>
-									</custom>
-							</case>
-												
-						<case>
-				<id>C3</id>
-				<title>dasdasdasdas</title>
-												<template>Test Case (Steps)</template>
-																<type>Other</type>
-																<priority>Medium</priority>
-																<estimate></estimate>
-																								<references></references> 
-																				<custom>
-										<automation_type><id>0</id><value> None</value></automation_type>
-										<steps_separated><step>
-<content>shared</content><expected></expected></step>
-<step>
-<shared_step_id>1</shared_step_id></step>
-</steps_separated>
-									</custom>
-							</case>
-								</cases>
-								<sections>
-		<section>
-		<name>ВВЫФ</name>
-		<description></description>
-										<sections>
-		<section>
-		<name>ВЫФВ</name>
-		<description></description>
-										<sections>
-		<section>
-		<name>ВЫВ</name>
-		<description></description>
-										<sections>
-		<section>
-		<name>ВЫВ</name>
-		<description></description>
-									</section>
-	</sections>
-			</section>
-	</sections>
-			</section>
-	</sections>
-			</section>
-	</sections>
-			</section>
-	</sections>
+                    </custom>
+                </case>
+
+                <case>
+                    <id>C2</id>
+                    <title>dsd</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Other</type>
+                    <priority>Medium</priority>
+                    <estimate></estimate>
+                    <references>21</references>
+                    <custom>
+                        <automation_type>
+                            <id>0</id>
+                            <value> None</value>
+                        </automation_type>
+                        <preconds>d</preconds>
+                        <steps_separated>
+                            <step>
+                                <shared_step_id>1</shared_step_id>
+                            </step>
+                            <step>
+                                <content>dsd</content>
+                                <expected>dsd</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+
+                <case>
+                    <id>C3</id>
+                    <title>dasdasdasdas</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Other</type>
+                    <priority>Medium</priority>
+                    <estimate></estimate>
+                    <references></references>
+                    <custom>
+                        <automation_type>
+                            <id>0</id>
+                            <value> None</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <content>shared</content>
+                                <expected></expected>
+                            </step>
+                            <step>
+                                <shared_step_id>1</shared_step_id>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+            </cases>
+            <sections>
+                <section>
+                    <name>ВВЫФ</name>
+                    <description></description>
+                    <sections>
+                        <section>
+                            <name>ВЫФВ</name>
+                            <description></description>
+                            <sections>
+                                <section>
+                                    <name>ВЫВ</name>
+                                    <description></description>
+                                    <sections>
+                                        <section>
+                                            <name>ВЫВ</name>
+                                            <description></description>
+                                        </section>
+                                    </sections>
+                                </section>
+                            </sections>
+                        </section>
+                    </sections>
+                </section>
+            </sections>
+        </section>
+    </sections>
 </suite>

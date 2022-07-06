@@ -1,0 +1,1652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite>
+    <id>S1</id>
+    <name>Master</name>
+    <description></description>
+    <sections>
+        <section>
+            <name>Demo</name>
+            <description>в данной секции хранятся тесты на WEB</description>
+            <cases>
+                <case>
+                    <id>C1</id>
+                    <title>Ссылка на лицензионное соглашение</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Usability</type>
+                    <priority>Medium</priority>
+                    <estimate>900</estimate>
+                    <references>https://www.google.com/</references>
+                    <custom>
+                        <review_date>2022-05-17</review_date>
+                        <automation_type>
+                            <id>1</id>
+                            <value> Не автоматизировн</value>
+                        </automation_type>
+                        <responsible_automator>
+                            <id>1</id>
+                            <value>Example Example</value>
+                        </responsible_automator>
+                        <preconds>Для входа использовать админскую учетку</preconds>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Нажать на кнопку входа</content>
+                                <expected>Открыта страница авторизации ![](index.php?/attachments/get/c869c12e-9a42-4014-a9fe-90afd2131143)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; </expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Ввести логин зарегистрированного пользователя</content>
+                                <expected>Поле ввода логина заполнено</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Ввести пароль зарегистрированного пользователя</content>
+                                <expected>Введенный пароль отображается *-ками</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C2</id>
+                    <title>Форма подписки на странице Лектория</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Smoke &amp; Sanity</type>
+                    <priority>Critical</priority>
+                    <estimate>300</estimate>
+                    <references>https://www.google.com/</references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <responsible_automator>
+                            <id>1</id>
+                            <value>Example Example</value>
+                        </responsible_automator>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Перейти на сайт</content>
+                                <expected>Открыта главная страница сайта</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>В панели навигации нажать на &quot;Лекторий&quot;</content>
+                                <expected>Выполнен переход на страницу сайта &quot;Лекторий&quot;</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Нажать на флоат-баттон формы подписки</content>
+                                <expected>Раскрылось окно формы подписки
+![](index.php?/attachments/get/c88b3d93-13a2-499e-b0f4-f256259265ba)&amp;nbsp;&amp;nbsp; 
+                                </expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Нажать в форме на ссылку согласия на обработку персональных данных</content>
+                                <expected>В соседней вкладке открыта страница сайта &quot;Соглашение на обработку персональных данных&quot;</expected>
+                            </step>
+                            <step>
+                                <index>5</index>
+                                <content>Вернуться к форме и в поле ввода почты введите валидный e-mail</content>
+                                <expected>Текст введен и отображается</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C3</id>
+                    <title>Сохранение информации в профиле</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Performance</type>
+                    <priority>Medium</priority>
+                    <estimate>300</estimate>
+                    <references>https://www.google.com/</references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <responsible_automator>
+                            <id>1</id>
+                            <value>Example Example</value>
+                        </responsible_automator>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Открыть браузер и перейти на сайт продукта 
+
+![](index.php?/attachments/get/715712c4-7c1c-4a07-a0d7-15075a4571b1)&amp;nbsp; 
+                                </content>
+                                <expected>Загружена главная страница сайта </expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Нажать на кнопку входа в Личный кабинет</content>
+                                <expected>Открыта страница авторизации</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Заполнить поля формы регистрации валидными значениями (ФИО, email, телефон, название компании, пароль и повтор пароля)</content>
+                                <expected>Текст отображается в поле</expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Перейти по ссылке &quot;Согласие на обработку персональных данный&quot;</content>
+                                <expected>В новой вкладке открыто &quot;Согласине на обработку персональных данный&quot;</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+            </cases>
+            <sections>
+                <section>
+                    <name>For GameDev</name>
+                    <description>в данной секции хранятся тесты на WEB</description>
+                    <cases>
+                        <case>
+                            <id>C24</id>
+                            <title>Скример</title>
+                            <template>Test Case (Steps)</template>
+                            <type>Functional</type>
+                            <priority>Critical</priority>
+                            <estimate>600</estimate>
+                            <references></references>
+                            <custom>
+                                <review_date>2022-05-03</review_date>
+                                <automation_type>
+                                    <id>1</id>
+                                    <value> Не автоматизировн</value>
+                                </automation_type>
+                                <responsible_automator>
+                                    <id>1</id>
+                                    <value>Example Example</value>
+                                </responsible_automator>
+                                <preconds>Зайти в проект &quot;Наименование проекта&quot;, перейти на уровень &quot;Тест&quot;
+
+
+
+                                </preconds>
+                                <steps_separated>
+                                    <step>
+                                        <index>1</index>
+                                        <content>Подойти к желтой двери и нажать Enter</content>
+                                        <expected>Проигрывается звук стука в дверь</expected>
+                                    </step>
+                                    <step>
+                                        <index>2</index>
+                                        <content>Подойти по очереди к красной и зеленой двери и нажать Enter</content>
+                                        <expected>Проигрывается звук стука в дверь 2 раза </expected>
+                                    </step>
+                                    <step>
+                                        <index>3</index>
+                                        <content>Подойти к черной двери и нажать Enter</content>
+                                        <expected>Срабатывает анимация, из-за двери выпрыгивает кролик с рогами.
+![](index.php?/attachments/get/93d83ca6-814d-465d-b68b-39486500715f)&amp;nbsp; 
+                                        </expected>
+                                    </step>
+                                </steps_separated>
+                            </custom>
+                        </case>
+                        <case>
+                            <id>C25</id>
+                            <title>Нанесение урона</title>
+                            <template>Test Case (Steps)</template>
+                            <type>Functional</type>
+                            <priority>Critical</priority>
+                            <estimate>600</estimate>
+                            <references></references>
+                            <custom>
+                                <review_date>2022-05-22</review_date>
+                                <automation_type>
+                                    <id>1</id>
+                                    <value> Не автоматизировн</value>
+                                </automation_type>
+                                <responsible_automator>
+                                    <id>1</id>
+                                    <value>Example Example</value>
+                                </responsible_automator>
+                                <preconds>Зайти в проект &quot;Наименование проекта&quot;
+Перейти на уровень &quot;Тест&quot;
+
+
+                                </preconds>
+                                <steps_separated>
+                                    <step>
+                                        <index>1</index>
+                                        <content>Подбежать к монстру, нажать клавишу ПКМ</content>
+                                        <expected>![](index.php?/attachments/get/c8dc04e6-80e9-4c27-9cab-d7abf8749f45)&amp;nbsp; Удар нанесен, полоска здоровья стала меньше
+
+                                        </expected>
+                                    </step>
+                                    <step>
+                                        <index>2</index>
+                                        <content>Нажать клавишу ПКМ 4 раза</content>
+                                        <expected>Противник &quot;погиб&quot;, полоска здоровья красная
+
+                                        </expected>
+                                    </step>
+                                    <step>
+                                        <index>3</index>
+                                        <content>Подождать на месте 7 секунд</content>
+                                        <expected>Тело &quot;погибшего противника&quot; блюрится и исчезает</expected>
+                                    </step>
+                                </steps_separated>
+                            </custom>
+                        </case>
+                        <case>
+                            <id>C26</id>
+                            <title>Настройки сложности</title>
+                            <template>Test Case (Text)</template>
+                            <type>Functional</type>
+                            <priority>High</priority>
+                            <estimate></estimate>
+                            <references></references>
+                            <custom>
+                                <review_date>2022-05-02</review_date>
+                                <automation_type>
+                                    <id>1</id>
+                                    <value> Не автоматизировн</value>
+                                </automation_type>
+                                <steps>Зайти модуль настройки
+Выбрать уровень сложности &quot;Не бейте меня&quot;
+Подтвердить выбор
+Запустить игру
+Повторить шаги 1-4 с другим уровнем сложности
+
+![](index.php?/attachments/get/60e9d8e5-ba12-48a8-8ae2-ddabceeda506) 
+                                </steps>
+                            </custom>
+                        </case>
+                    </cases>
+                </section>
+                <section>
+                    <name>Webhooks</name>
+                    <description>в данной секции хранятся тесты на WEB</description>
+                    <cases>
+                        <case>
+                            <id>C4</id>
+                            <title>Отображение спец.переменных при создании webhook</title>
+                            <template>Test Case (Steps)</template>
+                            <type>Other</type>
+                            <priority>High</priority>
+                            <estimate></estimate>
+                            <references></references>
+                            <custom>
+                                <automation_type>
+                                    <id>0</id>
+                                    <value> Автоматизирован</value>
+                                </automation_type>
+                                <steps_separated>
+                                    <step>
+                                        <index>1</index>
+                                        <content>Перейти на страницу &quot;Проекты&quot;</content>
+                                        <expected>Открыта страница &quot;Проекты&quot;</expected>
+                                    </step>
+                                    <step>
+                                        <index>2</index>
+                                        <content>Нажать кнопку создания нового проекта</content>
+                                        <expected>Открыт дровер создания проекта
+
+Доступна только раздел &quot;Общие настройки&quot;</expected>
+                                    </step>
+                                    <step>
+                                        <index>3</index>
+                                        <content>Заполнить поля</content>
+                                        <expected>Все поля заполнены</expected>
+                                    </step>
+                                    <step>
+                                        <index>4</index>
+                                        <content>Нажать кнопку сохранения</content>
+                                        <expected>Дровер закрыт,
+
+Открыта страница Библиотека тестов
+
+В Библиотеке тестов нет тестов, отображается плейсхолдер-подсказка</expected>
+                                    </step>
+                                    <step>
+                                        <index>5</index>
+                                        <content>Открыть настройки проекта во вкладке Webhook</content>
+                                        <expected>Открыта вкладка Webhook
+
+Список вебхуков пуст</expected>
+                                    </step>
+                                    <step>
+                                        <index>6</index>
+                                        <content>Нажать на кнопку добавления нового атрибута</content>
+                                        <expected>Развернулась карточка вебхука
+
+Кнопка
+![](index.php?/attachments/get/d3cfe23b-cf39-4a30-ae49-7a4e76756157)&amp;nbsp; 
+                                        </expected>
+                                    </step>
+                                </steps_separated>
+                            </custom>
+                        </case>
+                        <case>
+                            <id>C5</id>
+                            <title>Добавление webhook на событие &quot;Запуск автотестов&quot;</title>
+                            <template>Test Case (Steps)</template>
+                            <type>Acceptance</type>
+                            <priority>High</priority>
+                            <estimate>300</estimate>
+                            <references></references>
+                            <custom>
+                                <review_date>2022-05-11</review_date>
+                                <automation_type>
+                                    <id>0</id>
+                                    <value> Автоматизирован</value>
+                                </automation_type>
+                                <responsible_automator>
+                                    <id>1</id>
+                                    <value>Example Example</value>
+                                </responsible_automator>
+                                <preconds>Ввести логин зарегистрированного пользователя, с ролью и правами необходимыми для прохождения теста</preconds>
+                                <steps_separated>
+                                    <step>
+                                        <index>1</index>
+                                        <content>Перейти на страницу &quot;Проекты&quot;</content>
+                                        <expected>Открыта страница &quot;Проекты&quot;</expected>
+                                    </step>
+                                    <step>
+                                        <index>2</index>
+                                        <content>Нажать кнопку создания нового проекта</content>
+                                        <expected>Открыт дровер создания проекта
+
+Доступна только раздел &quot;Общие настройки&quot;
+![](index.php?/attachments/get/4bc2afb6-55e3-4042-84f9-791aec9e2715)&amp;nbsp; 
+                                        </expected>
+                                    </step>
+                                    <step>
+                                        <index>3</index>
+                                        <content>Заполнить поля</content>
+                                        <expected>Поля заполнены</expected>
+                                    </step>
+                                    <step>
+                                        <index>4</index>
+                                        <content>Нажать кнопку сохранения</content>
+                                        <expected>Дровер закрыт,
+
+Открыта страница Библиотека тестов
+
+В Библиотеке тестов нет тестов, отображается плейсхолдер-подсказка</expected>
+                                    </step>
+                                </steps_separated>
+                            </custom>
+                        </case>
+                        <case>
+                            <id>C6</id>
+                            <title>Отправка Webhook POST запроса без body при изменении статуса тест-плана</title>
+                            <template>Test Case (Steps)</template>
+                            <type>Functional</type>
+                            <priority>Low</priority>
+                            <estimate>600</estimate>
+                            <references></references>
+                            <custom>
+                                <review_date>2022-05-30</review_date>
+                                <automation_type>
+                                    <id>0</id>
+                                    <value> Автоматизирован</value>
+                                </automation_type>
+                                <responsible_automator>
+                                    <id>1</id>
+                                    <value>Example Example</value>
+                                </responsible_automator>
+                                <preconds>Авторизация осуществляется под учеткой админа</preconds>
+                                <steps_separated>
+                                    <step>
+                                        <index>1</index>
+                                        <content>Открыть настройки проекта во вкладке Webhook</content>
+                                        <expected>Открыта вкладка Webhook
+
+Список вебхуков пуст</expected>
+                                    </step>
+                                    <step>
+                                        <index>2</index>
+                                        <content>Нажать на кнопку добавления нового атрибута</content>
+                                        <expected>Развернулась карточка вебхука
+
+Кнопка
+![](index.php?/attachments/get/354f9f12-4d13-4ff0-bde8-1429b15be140) 
+                                        </expected>
+                                    </step>
+                                    <step>
+                                        <index>3</index>
+                                        <content>Заполнить все поля данными
+
+
+Например:
+
+
+Событие: изменение статуса тест-плана
+URL:&amp;nbsp;https://webhook.site/#!/d0cfc378-537a-4add-9554-78032ea80712
+HTTP headers:
+key: authorization value: Basic 123456
+key: testHttpHeaders value: test
+URL parameters:
+key: testRunId value: $TEST_RUN_ID
+key: testUrlParameters value: test
+key: testProjectId value: $PROJECT_ID
+Type: POST
+Send context in the POST body: false
+Act: Automated tests run was created</content>
+                                        <expected>Поля заполнены</expected>
+                                    </step>
+                                    <step>
+                                        <index>4</index>
+                                        <content>Сохранить вебхук</content>
+                                        <expected>Вебхук сохранён
+
+Появилась кнопка добавления нового вебхука</expected>
+                                    </step>
+                                </steps_separated>
+                            </custom>
+                        </case>
+                    </cases>
+                    <sections>
+                        <section>
+                            <name>Чек-листы</name>
+                            <description>в данной секции хранятся тесты на WEB</description>
+                            <cases>
+                                <case>
+                                    <id>C7</id>
+                                    <title>Отображение списка Тегов в таблице</title>
+                                    <template>Test Case (Steps)</template>
+                                    <type>Other</type>
+                                    <priority>Medium</priority>
+                                    <estimate></estimate>
+                                    <references></references>
+                                    <custom>
+                                        <automation_type>
+                                            <id>0</id>
+                                            <value> Автоматизирован</value>
+                                        </automation_type>
+                                        <steps_separated>
+                                            <step>
+                                                <index>1</index>
+                                                <content>Добавить файл, файл отобразился таблице истории результатов</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>2</index>
+                                                <content>Удалить файл, файл удален из таблицы результатов</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>3</index>
+                                                <content>Изменить результат теста, добавить новые файлы</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>4</index>
+                                                <content>Открыть историю результатов, показать скрытые элементы в колонке Файлы</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>5</index>
+                                                <content>Загрузить большое кол-во файлов, открыть историю результатов, проскроллить список</content>
+                                                <expected></expected>
+                                            </step>
+                                        </steps_separated>
+                                    </custom>
+                                </case>
+                                <case>
+                                    <id>C8</id>
+                                    <title>Отображение файлов в истории результатов WI</title>
+                                    <template>Test Case (Steps)</template>
+                                    <type>Functional</type>
+                                    <priority>Medium</priority>
+                                    <estimate>300</estimate>
+                                    <references></references>
+                                    <custom>
+                                        <automation_type>
+                                            <id>0</id>
+                                            <value> Автоматизирован</value>
+                                        </automation_type>
+                                        <steps_separated>
+                                            <step>
+                                                <index>1</index>
+                                                <content>Добавить файл, файл отобразился таблице истории результатов</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>2</index>
+                                                <content>Удалить файл, файл удален из таблицы результатов</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>3</index>
+                                                <content>Изменить результат теста, добавить новые файлы</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>4</index>
+                                                <content>Открыть историю результатов, показать скрытые элементы в колонке Файлы</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>5</index>
+                                                <content>Загрузить большое кол-во файлов, открыть историю результатов, проскроллить список</content>
+                                                <expected></expected>
+                                            </step>
+                                        </steps_separated>
+                                    </custom>
+                                </case>
+                                <case>
+                                    <id>C9</id>
+                                    <title>Отображение Пользователя и даты в уже проставленном результате</title>
+                                    <template>Test Case (Steps)</template>
+                                    <type>Acceptance</type>
+                                    <priority>High</priority>
+                                    <estimate>300</estimate>
+                                    <references></references>
+                                    <custom>
+                                        <automation_type>
+                                            <id>0</id>
+                                            <value> Автоматизирован</value>
+                                        </automation_type>
+                                        <responsible_automator>
+                                            <id>1</id>
+                                            <value>Example Example</value>
+                                        </responsible_automator>
+                                        <steps_separated>
+                                            <step>
+                                                <index>1</index>
+                                                <content>Открыть проставленный результат, кликнуть на имя пользователя, перейти в профиль</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>2</index>
+                                                <content>Открыть проставленный результат, кликнуть на аватарку пользователя, перейти в профиль</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>3</index>
+                                                <content>Изменить результат тест-поинту, кликнуть на имя пользователя, перейти в профиль</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>4</index>
+                                                <content>Изменить результат тест-поинут, кликнуть на аватарку пользователя, перейти в профиль</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>5</index>
+                                                <content>Изменить результат тест-поинту, дата и время изменяются</content>
+                                                <expected></expected>
+                                            </step>
+                                        </steps_separated>
+                                    </custom>
+                                </case>
+                                <case>
+                                    <id>C10</id>
+                                    <title>Массовый сброс тест-поинтов на странице Выполнения</title>
+                                    <template>Test Case (Steps)</template>
+                                    <type>Destructive</type>
+                                    <priority>High</priority>
+                                    <estimate>300</estimate>
+                                    <references></references>
+                                    <custom>
+                                        <review_date>2022-05-22</review_date>
+                                        <automation_type>
+                                            <id>0</id>
+                                            <value> Автоматизирован</value>
+                                        </automation_type>
+                                        <steps_separated>
+                                            <step>
+                                                <index>1</index>
+                                                <content>Выделить объекты массовым выделением, нажать кнопку сбрасывания</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>2</index>
+                                                <content>В тесте-плане для автотестов применить массовое выделение, нажать кнопку запуска, применить сброс результатов</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>3</index>
+                                                <content>Выделить несколько объектов по-отдельности, нажать кнопку сбрасывания результатов</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>4</index>
+                                                <content>В тест-плане для автотестов выделить 1 объект, нажать кнопку сбрасывания результатов</content>
+                                                <expected></expected>
+                                            </step>
+                                            <step>
+                                                <index>5</index>
+                                                <content>Открыть тест-план, отсутствует кнопка сбрасывания результатов</content>
+                                                <expected></expected>
+                                            </step>
+                                        </steps_separated>
+                                    </custom>
+                                </case>
+                            </cases>
+                            <sections>
+                                <section>
+                                    <name>&quot;Печать&quot;</name>
+                                    <description>в данной секции хранятся тесты на WEB</description>
+                                    <cases>
+                                        <case>
+                                            <id>C36</id>
+                                            <title>Вывести на печать WI</title>
+                                            <template>Test Case (Steps)</template>
+                                            <type>Compatibility</type>
+                                            <priority>Low</priority>
+                                            <estimate>120</estimate>
+                                            <references></references>
+                                            <custom>
+                                                <automation_type>
+                                                    <id>0</id>
+                                                    <value> Автоматизирован</value>
+                                                </automation_type>
+                                                <steps_separated>
+                                                    <step>
+                                                        <index>1</index>
+                                                        <content>Выбрать созданный WI</content>
+                                                        <expected>WI выбран</expected>
+                                                    </step>
+                                                    <step>
+                                                        <index>2</index>
+                                                        <content>Нажать на Print</content>
+                                                        <expected>Открывается новая вкладка с формой с html представлением выбранного WI (без хедера Test IT)</expected>
+                                                    </step>
+                                                </steps_separated>
+                                            </custom>
+                                        </case>
+                                    </cases>
+                                </section>
+                            </sections>
+                        </section>
+                    </sections>
+                </section>
+            </sections>
+        </section>
+        <section>
+            <name>Древо секций</name>
+            <description>в данной секции хранятся тесты на WEB</description>
+            <cases>
+                <case>
+                    <id>C11</id>
+                    <title>Создание подсекции в секции</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Regression</type>
+                    <priority>Low</priority>
+                    <estimate>360</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-25</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <preconds>Использовать админскую учетку</preconds>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Выбрать созданный проект</content>
+                                <expected>Переход в библиотеку тестов</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Создать секцию в главной секции</content>
+                                <expected>Секция создана</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Создать подсекцию в секции</content>
+                                <expected>Подсекция создана</expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Проверить, что функционал подсекции соответствует функционалу родительской секции</content>
+                                <expected>Функционал подсекции соответствует функционалу родительской секции</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C12</id>
+                    <title>Навигация по секциям через дерево секций</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Functional</type>
+                    <priority>Medium</priority>
+                    <estimate>300</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <responsible_automator>
+                            <id>1</id>
+                            <value>Example Example</value>
+                        </responsible_automator>
+                        <preconds>Используется админская учетка</preconds>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Нажать на последнюю секцию в дереве секций</content>
+                                <expected>Осуществлен переход вниз к секции на странице. В секции отображен список всех тестов данной секции</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Нажать на главную секцию в дереве секций</content>
+                                <expected>Осуществлен переход вверх к секции на странице. В секции отображен список всех тестов данной секции</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C13</id>
+                    <title>Перемещение секций в дереве секций</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Security</type>
+                    <priority>High</priority>
+                    <estimate>420</estimate>
+                    <references></references>
+                    <custom>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <responsible_automator>
+                            <id>1</id>
+                            <value>Example Example</value>
+                        </responsible_automator>
+                        <preconds>Используется админская учетка</preconds>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Открыть проект</content>
+                                <expected>Загружена страница библиотеки тестов Название проекта написано в панели навигации Название главной секции - название проекта</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Создать секцию в главной секции</content>
+                                <expected>Секция создана</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Создать еще несколько секций</content>
+                                <expected>Дерево секций содержит несколько секций</expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Заполнить секции тестами</content>
+                                <expected>Секции заполнены тестами</expected>
+                            </step>
+                            <step>
+                                <index>5</index>
+                                <content>Перетянуть одну секцию в другую секцию</content>
+                                <expected>Перетянутая секция стала вложенной секцией Секция отражена в дереве секций как вложенная в другую секцию Секция отражена на странице библиотеки тестов как вложенная в другую секцию Секции сохранили вложенный набор тестов</expected>
+                            </step>
+                            <step>
+                                <index>6</index>
+                                <content>Вложенную секцию перетянуть в главную секцию</content>
+                                <expected>Перетянутая секция стала перестала быть вложенной секцией Секции сохранили вложенный набор тестов</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C14</id>
+                    <title>Удаление секции со вложениями из дерева секций</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Acceptance</type>
+                    <priority>Medium</priority>
+                    <estimate>480</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-17</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Создать секцию в главной секции</content>
+                                <expected>Секция создана</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Заполнить созданную секцию тестами</content>
+                                <expected>Секция заполнена тестами</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Создать подсекцию в секции</content>
+                                <expected>Подсекция создана</expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Заполнить созданную подсекцию тестами</content>
+                                <expected>Секция заполнена тестами</expected>
+                            </step>
+                            <step>
+                                <index>5</index>
+                                <content>Нажать на кнопку удаления секции в дереве секций</content>
+                                <expected>Открылось модальное окно Элементы страницы недоступны</expected>
+                            </step>
+                            <step>
+                                <index>6</index>
+                                <content>Нажать на кнопку подтверждения удаления</content>
+                                <expected>Модальное окно скрылось Секция со вложенной подсекцией удалена из дерева секций Секция со вложенной подсекцией удалена со страницы Все вложенные элементы секции и подсекции перенесены в секцию &quot;Корзина&quot;</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C15</id>
+                    <title>Создание подсекции в главной секции</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Regression</type>
+                    <priority>Low</priority>
+                    <estimate>240</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-09</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Открыть проект</content>
+                                <expected>Загружена страница &quot;Библиотека тестов&quot; Название проекта присутствует в панели навигации</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Нажать на кнопку добавления секции
+
+                                </content>
+                                <expected>Открылось модальное окно создания секции
+
+                                </expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Ввести название секции 
+
+                                </content>
+                                <expected>Название секции отображается в поле ввода
+
+                                </expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Нажать на кнопку подтверждения
+
+                                </content>
+                                <expected>Секция создана
+Название секции отображается в дереве секций под главной секцией
+На экране отображается новая пустая секция с введённым ранее именем
+Секция отображена на странице библиотеки тестов</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C16</id>
+                    <title>Редактирование секции через дерево секций</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Regression</type>
+                    <priority>Medium</priority>
+                    <estimate>120</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>1</id>
+                            <value> Не автоматизировн</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Открыть меню секции в дереве секций</content>
+                                <expected>Открыто меню секции</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Нажать на кнопку редактирования в меню секции</content>
+                                <expected>Открылось модальное окно редактирования секции Элементы страницы на заднем фоне недоступны</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Изменить текст в поле редактирования названия секции</content>
+                                <expected>Текст в поле названия секции изменён</expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Сохранить</content>
+                                <expected>Модальное окно скрылось Название секции изменено в дереве секций Название секции изменено на странице библиотеки тестов</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C17</id>
+                    <title>Копия Наличие всех необходимых полей для добавления webhook</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Regression</type>
+                    <priority>High</priority>
+                    <estimate>360</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-08</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <responsible_automator>
+                            <id>1</id>
+                            <value>Example Example</value>
+                        </responsible_automator>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content></content>
+                                <expected></expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C18</id>
+                    <title>Добавление и проверка webhook со всеми спец. переменными</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Regression</type>
+                    <priority>Medium</priority>
+                    <estimate>600</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Перейти на страницу &quot;Проекты&quot;</content>
+                                <expected>Открыта страница &quot;Проекты&quot;</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Нажать кнопку создания нового проекта</content>
+                                <expected>Открыт дровер создания проекта
+
+Доступна только раздел &quot;Общие настройки&quot;</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Перейти на сайте для тестирования вебхуков
+
+
+Пример:
+
+
+https://webhook.site/#!/d0cfc378-537a-4add-9554-78032ea80712</content>
+                                <expected>Появилось уведомление, что был принят запрос
+Все переданные поля присутствуют в том виде, как были переданы
+Спец. переменные приняли соответствующее значение
+Спец переменные были все переданы
+В логах появилась запись</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+            </cases>
+            <sections>
+                <section>
+                    <name>История прохождения WI</name>
+                    <description>в данной секции хранятся тесты на WEB</description>
+                    <cases>
+                        <case>
+                            <id>C19</id>
+                            <title>Сортировка таблицы истории результатов прохождения теста</title>
+                            <template>Test Case (Steps)</template>
+                            <type>Functional</type>
+                            <priority>High</priority>
+                            <estimate>420</estimate>
+                            <references></references>
+                            <custom>
+                                <automation_type>
+                                    <id>0</id>
+                                    <value> Автоматизирован</value>
+                                </automation_type>
+                                <responsible_automator>
+                                    <id>1</id>
+                                    <value>Example Example</value>
+                                </responsible_automator>
+                                <steps_separated>
+                                    <step>
+                                        <index>1</index>
+                                        <content>Перейти в библиотеку тестов проекта</content>
+                                        <expected>Открыты библиотека тестов проекта</expected>
+                                    </step>
+                                    <step>
+                                        <index>2</index>
+                                        <content>Открыть WI, которому был проставлен результат</content>
+                                        <expected>Открыто модальное окно редактирования WI</expected>
+                                    </step>
+                                    <step>
+                                        <index>3</index>
+                                        <content>Перейти во вкладку с историей результатов прохождения теста</content>
+                                        <expected>Открыта вкладка с историей результатов прохождения теста</expected>
+                                    </step>
+                                    <step>
+                                        <index>4</index>
+                                        <content>Нажать на заголовок столбца таблицы</content>
+                                        <expected>Таблица отсортировалась по выбранному столбцу в алфавитном порядке</expected>
+                                    </step>
+                                    <step>
+                                        <index>5</index>
+                                        <content>Нажать на тот же заголовок еще раз</content>
+                                        <expected>Таблица отсортировалась по выбранному столбцу в обратном порядке</expected>
+                                    </step>
+                                    <step>
+                                        <index>6</index>
+                                        <content>Повторить действия 5-6 со всеми столбцами таблицы, кроме &quot;ссылки на баг&quot; и &quot;комментарии&quot;</content>
+                                        <expected>Таблица сортируется по каждому столбу в алфавитном и обратном порядке</expected>
+                                    </step>
+                                </steps_separated>
+                            </custom>
+                        </case>
+                        <case>
+                            <id>C20</id>
+                            <title>Переход по ссылке на баг из истории результатов прохождения теста</title>
+                            <template>Test Case (Steps)</template>
+                            <type>Regression</type>
+                            <priority>High</priority>
+                            <estimate>360</estimate>
+                            <references></references>
+                            <custom>
+                                <review_date>2022-05-02</review_date>
+                                <automation_type>
+                                    <id>0</id>
+                                    <value> Автоматизирован</value>
+                                </automation_type>
+                                <steps_separated>
+                                    <step>
+                                        <index>1</index>
+                                        <content>Перейти в раздел результатов</content>
+                                        <expected>Открыт раздел результатов</expected>
+                                    </step>
+                                    <step>
+                                        <index>2</index>
+                                        <content>Выбрать в списке тестов один и нажать на название теста</content>
+                                        <expected>Открыто модальное окно проставления результатов с шагами прохождения теста
+
+Общие шаги, находящиеся в тесте, по умолчанию свернуты
+
+Поля ссылки и комментария не заполнены, статус не выбран
+
+Кнопка сохранения недоступна</expected>
+                                    </step>
+                                    <step>
+                                        <index>3</index>
+                                        <content>Выбрать статус поинта и добавить ссылку</content>
+                                        <expected>Статус выбран
+
+Ссылка отобразилась в поле
+
+Кнопка сохранения стала доступной</expected>
+                                    </step>
+                                    <step>
+                                        <index>4</index>
+                                        <content>Нажать кнопку сохранения</content>
+                                        <expected>Модальное окно закрыто
+
+Выбранный поинт в списке изменил свой статус, мигнул 1 раз
+
+Круговая диаграмма и распределение по процентам изменили свои значения согласно проставленным результатам</expected>
+                                    </step>
+                                </steps_separated>
+                            </custom>
+                        </case>
+                        <case>
+                            <id>C21</id>
+                            <title>Фильтрация таблицы истории результатов прохождения теста</title>
+                            <template>Test Case (Steps)</template>
+                            <type>Regression</type>
+                            <priority>Medium</priority>
+                            <estimate>180</estimate>
+                            <references></references>
+                            <custom>
+                                <automation_type>
+                                    <id>0</id>
+                                    <value> Автоматизирован</value>
+                                </automation_type>
+                                <responsible_automator>
+                                    <id>1</id>
+                                    <value>Example Example</value>
+                                </responsible_automator>
+                                <steps_separated>
+                                    <step>
+                                        <index>1</index>
+                                        <content>Перейти в библиотеку тестов проекта</content>
+                                        <expected>Открыта библиотека тестов проекта</expected>
+                                    </step>
+                                    <step>
+                                        <index>2</index>
+                                        <content>Открыть WI, которому был проставлен результат</content>
+                                        <expected>Открыто модальное окно редактирования WI</expected>
+                                    </step>
+                                    <step>
+                                        <index>3</index>
+                                        <content>Перейти во вкладку с историей результатов теста</content>
+                                        <expected>Открыта вкладка с историей результатов теста
+
+Таблица содержит верные данные</expected>
+                                    </step>
+                                    <step>
+                                        <index>4</index>
+                                        <content>Выбрать в заголовке одного столбца условие фильтрации таблицы</content>
+                                        <expected>Условие выбрано
+
+Таблица содержит данные, удовлетворяющие условию фильтрации</expected>
+                                    </step>
+                                    <step>
+                                        <index>5</index>
+                                        <content>Повторить шаг 5 с каждой колонкой, для которой доступна фильтрация</content>
+                                        <expected>Условия выбираются, таблица подстраивает значения под заданные условия</expected>
+                                    </step>
+                                </steps_separated>
+                            </custom>
+                        </case>
+                        <case>
+                            <id>C22</id>
+                            <title>Переход в тест-план из истории результатов прохождения теста</title>
+                            <template>Test Case (Steps)</template>
+                            <type>Performance</type>
+                            <priority>Medium</priority>
+                            <estimate>420</estimate>
+                            <references></references>
+                            <custom>
+                                <automation_type>
+                                    <id>0</id>
+                                    <value> Автоматизирован</value>
+                                </automation_type>
+                                <responsible_automator>
+                                    <id>1</id>
+                                    <value>Example Example</value>
+                                </responsible_automator>
+                                <steps_separated>
+                                    <step>
+                                        <index>1</index>
+                                        <content>Перейти в библиотеку тестов проекта</content>
+                                        <expected>Открыта библиотека тестов проекта</expected>
+                                    </step>
+                                    <step>
+                                        <index>2</index>
+                                        <content>Открыть WI, которому был проставлен результат</content>
+                                        <expected>Открыто модальное окно редактирования Wi</expected>
+                                    </step>
+                                    <step>
+                                        <index>3</index>
+                                        <content>Перейти во вкладку истории результатов прохождения</content>
+                                        <expected>Открыта вкладка истории результатов прохождения 
+
+Таблица содержит верные данные</expected>
+                                    </step>
+                                    <step>
+                                        <index>4</index>
+                                        <content>Нажать на название тест-плана</content>
+                                        <expected>Открывается дополнительная вкладка со страницей планирования выбранного тест-плана</expected>
+                                    </step>
+                                </steps_separated>
+                            </custom>
+                        </case>
+                        <case>
+                            <id>C23</id>
+                            <title>Отображение в  истории прохождения теста разных результатов, конфигураций, комментариев, ссылок</title>
+                            <template>Test Case (Steps)</template>
+                            <type>Other</type>
+                            <priority>Medium</priority>
+                            <estimate>600</estimate>
+                            <references></references>
+                            <custom>
+                                <review_date>2022-05-11</review_date>
+                                <automation_type>
+                                    <id>0</id>
+                                    <value> Автоматизирован</value>
+                                </automation_type>
+                                <steps_separated>
+                                    <step>
+                                        <index>1</index>
+                                        <content>Перейти в раздел конфигураций</content>
+                                        <expected>Открыт раздел конфигураций</expected>
+                                    </step>
+                                    <step>
+                                        <index>2</index>
+                                        <content>Нажать кнопку создания новой конфигурации</content>
+                                        <expected>Появилась новая карточка конфигурации
+
+Активно поле для заполнения названия конфигурации</expected>
+                                    </step>
+                                    <step>
+                                        <index>3</index>
+                                        <content>Ввести название конфигурации</content>
+                                        <expected>Название отображено</expected>
+                                    </step>
+                                    <step>
+                                        <index>4</index>
+                                        <content>Нажать кнопку сохранения</content>
+                                        <expected>Поля конфигурации стали недоступны для редактирования
+
+Конфигурация включена и не помечена как &quot;Конфигурация по умолчанию&quot;</expected>
+                                    </step>
+                                </steps_separated>
+                            </custom>
+                        </case>
+                    </cases>
+                </section>
+            </sections>
+        </section>
+        <section>
+            <name>WI</name>
+            <description>в данной секции хранятся тесты на WEB</description>
+            <cases>
+                <case>
+                    <id>C27</id>
+                    <title>Дублирование WI</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Regression</type>
+                    <priority>Medium</priority>
+                    <estimate>300</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Выбрать любой WI</content>
+                                <expected>Открыто модальное окно WI</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Нажать на кнопку дублирования WI</content>
+                                <expected>Открыто модальное окно нового WI с заполненными полями скопированного теста В заголовке скопированного WI префикс Копия</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C28</id>
+                    <title>Копирование ссылки на WI</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Regression</type>
+                    <priority>Medium</priority>
+                    <estimate>360</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <responsible_automator>
+                            <id>1</id>
+                            <value>Example Example</value>
+                        </responsible_automator>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Выбрать в библиотеке тестов WI и открыть его</content>
+                                <expected>Открыто модальное окно редактирования WI</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Нажать кнопку копирования ссылки на WI</content>
+                                <expected>Появляется оповещение о том, что ссылка успешно скопирована</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Вставить ссылку в новую вкладку браузера и нажать Enter</content>
+                                <expected>Открыто страница с модальным окном редактирования выбранного WI</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C29</id>
+                    <title>Дублирование WI  с изменением секции</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Accessibility</type>
+                    <priority>Medium</priority>
+                    <estimate>420</estimate>
+                    <references></references>
+                    <custom>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Выбрать любой WI</content>
+                                <expected>Открыто модальное окно WI</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Нажать на кнопку дублирования WI</content>
+                                <expected>Открыто модальное окно нового WI с заполненными полями скопированного теста В заголовке скопированного WI префикс Копия</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>В списке секций WI выбрать другую секцию</content>
+                                <expected>Секция выбрана</expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Нажать кнопку сохранения WI</content>
+                                <expected>Окно редактирования закрылось, WI появился в списке выбранной ранее секции и мигнул один раз</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C30</id>
+                    <title>Прикрепление документов к WI</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Regression</type>
+                    <priority>High</priority>
+                    <estimate>420</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Открыть любой созданный WI</content>
+                                <expected>Открыто модальное окно редактирования WI, вкладка прикрепления документов доступна</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Нажать кнопку добавления файлов</content>
+                                <expected>Открыто окно проводника для выбора и загрузки файла</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Выбрать и загрузить файл</content>
+                                <expected>Выбранный файл загружен и отображается в списке прикрепленных документов</expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Перенести с помощью функции Drug&amp;amp;Drop файлы во вкладку добавления файлов</content>
+                                <expected>Выбранные файлы загружены и отображаются в списке прикрепленных документов</expected>
+                            </step>
+                            <step>
+                                <index>5</index>
+                                <content>Нажать кнопку сохранения</content>
+                                <expected>Модальное окно закрыто</expected>
+                            </step>
+                            <step>
+                                <index>6</index>
+                                <content>Снова открыть WI и перейти во вкладку прикрепленных документов</content>
+                                <expected>Список документов отображается и соответствует загруженным ранее файлам</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C31</id>
+                    <title>Выход из карточки WI по клавише Esc</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Automated</type>
+                    <priority>Medium</priority>
+                    <estimate>300</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>0</id>
+                            <value> Автоматизирован</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Перейти в Библиотеку тестов</content>
+                                <expected>Открыта Библиотека тестов</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Нажать кнопку создания WI</content>
+                                <expected>Открыто модальное окно создания WI</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Заполнить обязательные поля значениями</content>
+                                <expected>Поля заполнены</expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Нажать кнопку сохранения</content>
+                                <expected>Модальное окно закрыто,
+
+Созданный WI отобразился в библиотеке тестов,
+
+Отображаемые данные соответствуют введённым</expected>
+                            </step>
+                            <step>
+                                <index>5</index>
+                                <content>Открыть окно редактирования WI</content>
+                                <expected>Открыто окно редактирования WI </expected>
+                            </step>
+                            <step>
+                                <index>6</index>
+                                <content>Внести изменения в WI и нажать клавишу ESC</content>
+                                <expected>Появляется окно с предложением сохранить изменения</expected>
+                            </step>
+                            <step>
+                                <index>7</index>
+                                <content>Подтвердить действие сохранения</content>
+                                <expected>Окно закрывается, изменения сохранены</expected>
+                            </step>
+                            <step>
+                                <index>8</index>
+                                <content>Открыть окно редактирования WI</content>
+                                <expected>Открыто окно редактирования WI </expected>
+                            </step>
+                            <step>
+                                <index>9</index>
+                                <content>Без внесения каких-либо изменений в WI нажать кнопку ESC</content>
+                                <expected>Окно редактирования WI закрывается</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+            </cases>
+        </section>
+        <section>
+            <name>Администрирование</name>
+            <description></description>
+            <cases>
+                <case>
+                    <id>C32</id>
+                    <title>Верстка панели администрирования</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Regression</type>
+                    <priority>Low</priority>
+                    <estimate>300</estimate>
+                    <references></references>
+                    <custom>
+                        <automation_type>
+                            <id>1</id>
+                            <value> Не автоматизировн</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Перейти в панель администратора</content>
+                                <expected>Верстка шапки страницы администрирования выглядит как на макете
+
+![](index.php?/attachments/get/a118803c-1907-4111-a8b5-74358db0365a) 
+                                </expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Зайти в проект</content>
+                                <expected>Верстка шапки страницы проектов выглядит как на макете 
+![](index.php?/attachments/get/36ddb894-358c-452e-afaa-5715ff79bec0) 
+                                </expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+                <case>
+                    <id>C33</id>
+                    <title>Открытие панели администратора</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Functional</type>
+                    <priority>Critical</priority>
+                    <estimate>240</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>1</id>
+                            <value> Не автоматизировн</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Перейти на сайт </content>
+                                <expected>Выполнен переход на стартовую страницу приложения </expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Ввести логин администратора</content>
+                                <expected>Поле ввода логина заполнено</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Ввести пароль администратора</content>
+                                <expected>Поле ввода пароля заполнено *-ками</expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Нажать на кнопку авторизации</content>
+                                <expected>Главная страница приложения успешно открыта
+
+Доступна кнопка перехода в раздел администратора</expected>
+                            </step>
+                            <step>
+                                <index>5</index>
+                                <content>Нажать на кнопку перехода в раздел администратора</content>
+                                <expected>Открылась панель администратора
+Есть возможность просматривать и настраивать пользователей, группы, роли, интеграцию с jira и AD, лицензию</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+            </cases>
+        </section>
+        <section>
+            <name>OAuth</name>
+            <description></description>
+            <cases>
+                <case>
+                    <id>C34</id>
+                    <title>Создание нескольких подключений к внешним сервисам</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Regression</type>
+                    <priority>High</priority>
+                    <estimate>600</estimate>
+                    <references></references>
+                    <custom>
+                        <automation_type>
+                            <id>1</id>
+                            <value> Не автоматизировн</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Нажать на кебаб-меню рядом с аватаром пользоваля</content>
+                                <expected>Появилось контекстное меню, которое содержит: Профиль, Администрирование, Документация, Язык системы (Русский, English), Тема оформления (По умолчанию, Металлик), Выход</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Выбрать в контекстном меню пункт Администрирование</content>
+                                <expected>Открывается страница Пользователи</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Открыть вкладку OAuth2.0 и нажать кнопку Создать</content>
+                                <expected>Вкладка открыта, открывается дровер создания подключения</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+            </cases>
+        </section>
+        <section>
+            <name>Подключение AD/LDAP</name>
+            <description></description>
+            <cases>
+                <case>
+                    <id>C35</id>
+                    <title>Подключение к AD/LDAP без принудительной синхронизации</title>
+                    <template>Test Case (Steps)</template>
+                    <type>Security</type>
+                    <priority>High</priority>
+                    <estimate>600</estimate>
+                    <references></references>
+                    <custom>
+                        <review_date>2022-05-01</review_date>
+                        <automation_type>
+                            <id>1</id>
+                            <value> Не автоматизировн</value>
+                        </automation_type>
+                        <steps_separated>
+                            <step>
+                                <index>1</index>
+                                <content>Нажать кнопку редактирования подключения</content>
+                                <expected>Открыто модальное окно редактирования подключения</expected>
+                            </step>
+                            <step>
+                                <index>2</index>
+                                <content>Ввести валидные данные для подключения</content>
+                                <expected>Данные в полях отображаются согласно введенным значениям, кроме поля &quot;пароль&quot; - он заполнен *-ми</expected>
+                            </step>
+                            <step>
+                                <index>3</index>
+                                <content>Нажать кнопку тестирования соединения</content>
+                                <expected>Появилось оповещение об успешном тестировании подключения</expected>
+                            </step>
+                            <step>
+                                <index>4</index>
+                                <content>Нажать кнопку сохранения</content>
+                                <expected>Модальное окно закрыто, в карточке подключения указаны введенные данные</expected>
+                            </step>
+                            <step>
+                                <index>5</index>
+                                <content>Подождать автоматической синхронизации 5-6 мин</content>
+                                <expected>Ничего не происходит</expected>
+                            </step>
+                            <step>
+                                <index>6</index>
+                                <content>Перейти в раздел &quot;Пользователи&quot;</content>
+                                <expected>Загружен раздел &quot;Пользователи&quot;, в списке пользователей появились пользователи из AD - с типом пользователя &quot;AD&quot;</expected>
+                            </step>
+                        </steps_separated>
+                    </custom>
+                </case>
+            </cases>
+        </section>
+    </sections>
+</suite>
