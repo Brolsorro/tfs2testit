@@ -189,8 +189,8 @@ class TestsConverter:
             }
             if index == 0:
                 testPlanInfo = su
-            else:
-                suitesTree.append(su)
+    
+            suitesTree.append(su)
             
         
         suiteIdsPre = []

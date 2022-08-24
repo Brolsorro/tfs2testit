@@ -23,10 +23,11 @@ def replacer(string:str)->str:
           
         listTagDelete = replaceTo.keys()
         for tag in listTagDelete:
-            string = string.replace(f'<{tag}>',replaceTo[tag][0])
-            string = string.replace(f'</{tag}>',replaceTo[tag][1])
-            # for xml
-            string = string.replace(f'<{tag}/>',replaceTo[tag][1])
+            if type(string) is str:
+                string = string.replace(f'<{tag}>',replaceTo[tag][0])
+                string = string.replace(f'</{tag}>',replaceTo[tag][1])
+                # for xml
+                string = string.replace(f'<{tag}/>',replaceTo[tag][1])
 
         
         string = unescape(string)

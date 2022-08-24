@@ -1,9 +1,12 @@
+from hashlib import sha1
+from turtle import st
 from libs.testit.api import TestITAPI
 from libs.tfs.api import APITFS
 from utils.string_converters import replacer
 from typing import Union, List, Dict, Tuple
 from datetime import datetime
 from tqdm import tqdm
+from uuid import UUID
 import xml.etree.ElementTree as ET
 
 import logging
@@ -125,18 +128,70 @@ class MigrateTfsToTest():
         logging.info(f'Обработка шагов теста № {case_id}')
         try:
             root = ET.fromstring(steps_string)
+
             steps = root
             stepsList = []
-            for step in steps:
-                actual = step[0].text
-                expected = step[1].text \
-                    if step.get('type') == 'ValidateStep' else ''
+
+            def _get_all_steps(steps):
+                for step in steps:
+                    if step.get('ref'):
+                        stepsList.append({
+                            'type':'ref',
+                            'ref':step.get('ref')
+                        })
+
+                        _get_all_steps(step)
+
+                    else:
+                        actual = step[0].text
+                        expected = step[1].text \
+                            if step.get('type') == 'ValidateStep' else ''
+
+                        stepsList.append({
+                            'type':'step',
+                            'steps': (actual,expected)
+
+                        })
+                    
+            _get_all_steps(steps)
                 
-                stepsList.append((actual,expected))
         except TypeError:
             stepsList = []
 
         return stepsList
+    def _create_shared_steps_on_testit(self,api_testit:TestITAPI, shared_steps_id:Union[str,int]) -> UUID:
+        shared_steps_id = int(shared_steps_id) if type(shared_steps_id) is str else shared_steps_id
+        
+        shar_rps = self.api_tfs.get_work_item(shared_steps_id)['response']
+        sharedsteps_data = {}
+        sharedsteps_data['name'] = shar_rps['fields']['System.Title']
+        sharedsteps_data['description'] = shar_rps['fields']['System.Title']
+        _raw_steps = self._parse_steps(shar_rps['fields']['Microsoft.VSTS.TCM.Steps'])
+
+        sharedsteps_data['steps'] = []
+        for step in _raw_steps:  
+            sharedsteps_data['steps'].append(
+                {
+                    'action':step['steps'][0],
+                    'expected':step['steps'][1]
+                }
+            )
+    
+        sharedsteps_data['links'] = [
+            {
+                'title': 'Ссылка на TFS',
+                'url': f"{self.tfs_address}/{self.tfs_organization}/{self.tfs_project}/_workitems?id={shared_steps_id}&_a=edit",
+                'description': 'link to tfs',
+                'type': "Related",
+                "hasInfo": True
+
+            }
+        ]
+        _attr_unigue_shared_steps_tfs = {self.ID_attr_tfsid: str(shared_steps_id)}
+
+        sharedsteps_data['attributes'] = _attr_unigue_shared_steps_tfs
+        rps = api_testit.create_shared_steps(sharedsteps_data,_attr_unigue_shared_steps_tfs)
+        return rps['id']
 
     def _load_content_test(self, id_plan:Union[str,int],suite_id:Union[str,int]) -> list:
         """Выгрузка тестов по набору тетстов
@@ -208,8 +263,8 @@ class MigrateTfsToTest():
             }
             if index == 0:
                 testPlanInfo = su
-            else:
-                suitesTree.append(su)
+    
+            suitesTree.append(su)
             
         
         suiteIdsPre = []
@@ -264,7 +319,8 @@ class MigrateTfsToTest():
                 "name": "migrate"
                 }
             ]
-        _attr_unigue = {self.ID_attr_tfsid: test.get('id')}
+        tfs_case_id = test.get('id')
+        _attr_unigue = {self.ID_attr_tfsid: tfs_case_id}
         testdata['attributes'] = {
             self.ID_attr_date: date_review,
         
@@ -273,12 +329,24 @@ class MigrateTfsToTest():
 
         testdata['steps'] = []
         for step in test['steps']:  
-            testdata['steps'].append(
-                {
-                    'action':step[0],
-                    'expected':step[1]
-                }
-            )
+            if step.get('type') == 'step':
+                testdata['steps'].append(
+                    {
+                        'action':step['steps'][0],
+                        'expected':step['steps'][1]
+                    }
+                )
+            elif step.get('type') == 'ref':
+                tfs_shared_steps_id = step.get('ref')
+                shar_id = self._create_shared_steps_on_testit(Testit, tfs_shared_steps_id)
+                testdata['steps'].append(
+                    {
+                        'workItemId' : shar_id
+                    }
+                )
+            
+            
+
         Testit.create_test_case(testdata,_attr_unigue,parent_id=section_id)
 
 
@@ -300,33 +368,29 @@ class MigrateTfsToTest():
         
         self.ID_attr_date = TestITAPI.create_attributes_on_project('Дата создания')
         self.ID_attr_tfsid = TestITAPI.create_attributes_on_project('TfsID')
-        root_section = TestITAPI.create_section_on_project(
-            testPlanInfo.get('title'))
-
+        root_section = None
 
         date_now = datetime.now().strftime('%Y-%m-%d')
         
         logging.info(f"Convert created JSON to XML")
-        def _recursive_fill_sections_and_tests(root_suites):
+        def _recursive_fill_sections_and_tests(root_suites,root_section):
             
-            
+
             for _, suite in enumerate(root_suites):
                 current_section = TestITAPI.create_section_on_project(suite['title'],parent_id=root_section)
-
                 tests = suite['tests']
                 # if tests:
                 #     cases = ET.SubElement(section,"cases")
                 for index, test in enumerate(tests):
                     self._generate_tests(TestITAPI,current_section,test,index, date_now)
                     
-                childIds = suite['childIds']
-                if childIds:
-                    _recursive_fill_sections_and_tests(childIds,current_section)
+                child_suite = suite['childIds']
+                if child_suite:
+                    _recursive_fill_sections_and_tests(child_suite,current_section)
                 # for test in suite.get('tests',[]):
                 #     Section.text = test['title']
                 #     tree = ET.ElementTree(root)
-
-        _recursive_fill_sections_and_tests(jsonSuites)
+        _recursive_fill_sections_and_tests(jsonSuites,root_section)
         
 
 

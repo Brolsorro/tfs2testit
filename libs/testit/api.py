@@ -135,7 +135,7 @@ class TestITAPI:
             # ...
         _attr_list = list(attr_id_tfs.items())[0]
         workitems = self.get_workitems_on_section(parent_id)
-        workitems = [wim for wim in workitems if wim['attributes'][_attr_list[0]] == _attr_list[1]]
+        workitems = [wim for wim in workitems if wim['attributes'][_attr_list[0]] == _attr_list[1] and wim['entityTypeName'] == 'TestCases']
         if workitems:
             logging.info(F'Test already created: ID TFS: {_attr_list[1]}')
             return workitems[0]
@@ -195,8 +195,17 @@ class TestITAPI:
         rps = self._request(_RequestTypes.POST, '/api/v2/workItems',data=modeldata)
         return rps
 
-    def create_shared_steps(self, id_project,id_section):
-        data = {
+    def create_shared_steps(self, data, attr_id_tfs:dict, project_id:UUID=None,parent_id:UUID=None):
+        project_id = self.testit_project_id if not project_id else project_id
+        parent_id = self.testit_section_id if not parent_id else parent_id
+
+        _attr_list = list(attr_id_tfs.items())[0]
+        workitems = self.get_workitems_on_section(parent_id)
+        workitems = [wim for wim in workitems if wim['attributes'][_attr_list[0]] == _attr_list[1] and wim['entityTypeName'] == 'SharedSteps']
+        if workitems:
+            logging.info(F'Shared Steps already created: ID TFS: {_attr_list[1]}')
+            return workitems[0]
+        modeldata = {
             "entityTypeName": "SharedSteps",
             "description": "This is a basic test template",
             "state": "NeedsWork",
@@ -221,21 +230,6 @@ class TestITAPI:
                 "name": "string"
                 }
             ],
-            # "attachments": [
-            #     {
-            #     "id": "a834ed64-2d73-448e-9d46-a5027d832d35"
-            #     }
-            # ],
-            # "iterations": [
-            #     {
-            #     "parameters": [
-            #         {
-            #         "id": "a834ed64-2d73-448e-9d46-a5027d832d35"
-            #         }
-            #     ],
-            #     "id": "00000000-0000-0000-0000-000000000000"
-            #     }
-            # ],
             "links": [
                 {
                 "title": "string",
@@ -246,21 +240,12 @@ class TestITAPI:
                 }
             ],
             "name": "Basic template",
-            "projectId": id_project,
-            "sectionId": id_section,
-            # "autoTests": [
-            #     {
-            #     "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-            #     }
-            # ]
+            "projectId": project_id,
+            "sectionId": parent_id,
+
             }
-        # del data['steps']
-        # del data['preconditionSteps']
-        # del data['postconditionSteps']
-        # del data['attachments']
-        # del data['iterations']
-        # del data['autoTests']
-        rps = self._request(_RequestTypes.POST, '/api/v2/workItems',data=data)
+        modeldata.update(data)
+        rps = self._request(_RequestTypes.POST, '/api/v2/workItems',data=modeldata)
         return rps
     
     
