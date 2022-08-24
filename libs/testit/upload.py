@@ -7,6 +7,8 @@ from typing import Union, List, Dict, Tuple
 from datetime import datetime
 from tqdm import tqdm
 from uuid import UUID
+from bs4 import BeautifulSoup
+
 import xml.etree.ElementTree as ET
 
 import logging
@@ -159,13 +161,25 @@ class MigrateTfsToTest():
             stepsList = []
 
         return stepsList
+
+    def _try_delete_tags_from_string(self, s:str) -> str:
+        result = ""
+        if s:
+            try:
+                root = BeautifulSoup(s,'html.parser')
+                for el in root.find_all(text=True):
+                    result+=el.get_text()
+                return result
+            except: ...
+        return s
+
     def _create_shared_steps_on_testit(self,api_testit:TestITAPI, shared_steps_id:Union[str,int]) -> UUID:
         shared_steps_id = int(shared_steps_id) if type(shared_steps_id) is str else shared_steps_id
         
         shar_rps = self.api_tfs.get_work_item(shared_steps_id)['response']
         sharedsteps_data = {}
         sharedsteps_data['name'] = shar_rps['fields']['System.Title']
-        sharedsteps_data['description'] = shar_rps['fields'].get('System.Description','')
+        sharedsteps_data['description'] = self._try_delete_tags_from_string(shar_rps['fields'].get('System.Description',''))
         _raw_steps = self._parse_steps(shar_rps['fields']['Microsoft.VSTS.TCM.Steps'])
         sharedsteps_data['priority'] =  self.tabPriority[shar_rps['fields'].get('Microsoft.VSTS.Common.Priority',2)]
         sharedsteps_data["tags"]= [
@@ -221,7 +235,7 @@ class MigrateTfsToTest():
             
             steps = self._parse_steps(stepsString,case_id=caseId)
             urlto = f"{self.tfs_address}/{self.tfs_organization}/{self.tfs_project}/_workitems?id={caseId}&_a=edit"
-            description = fields.get('System.Description')
+            description = self._try_delete_tags_from_string(fields.get('System.Description'),'')
             test = {
                 'id': str(caseId),
                 'name':fields.get('System.Title'),
