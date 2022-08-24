@@ -3,9 +3,8 @@ import logging
 
 
 from libs.tfs.api import APITFS
-from libs.testit.api import TestITAPI
+from libs.testit.upload import migrate_tfs_to_testit
 from libs.tfs.converter import TestsConverter
-from libs.testit.upload import *
 from utils.command_line import getCommandLine
 from pathlib import Path
 
@@ -36,6 +35,8 @@ if __name__ == '__main__':
         if options.action == 'to-api':
             tokenTestIt = config['TestIT Settings']['tokenTestIT']
             address_testIt = config['TestIT Settings']['addressTestIT']
+            address_tfs = config['TFS Settings']['addressTFS']
+            tokenTfs = config['TFS Settings']['tokenTfs']
     except KeyError as e:
         logging.error(f'Не указан параметр в конфиге {e}\n')
 
@@ -56,13 +57,14 @@ if __name__ == '__main__':
         tsConv.write()
 
     if options.action == 'to-api':
-        apiTestIt = TestITAPI(
-        address_testIt,
-        tokenTestIt,
-        )
-        b = apiTestIt.get_project_by_name('test')
-        sections = apiTestIt.get_sections_on_project(b['id'])
-        # a = apiTestIt.create_test_suite()
-        a = apiTestIt.create_test_case()
-        print(a)
+        organization = options.collection
+        project = options.project
+        cert = options.cert
+        idPlan = options.id
+        migrate_tfs_to_testit(address_testIt,tokenTestIt,address_tfs,
+            organization,
+            project,
+            tokenTfs,
+            cert,
+            plan_id=idPlan)
         ...

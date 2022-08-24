@@ -9,3 +9,4 @@ build
 main.spec
 dist
 .vscode
+go.bat
