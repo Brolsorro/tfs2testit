@@ -293,7 +293,7 @@ class MigrateTfsToTest():
             _type_: Мигрированные тесты из tfs в testit по API
         """
         TestITAPI = self.api_testit
-        _, testPlanInfo = self._get_tree_ids(plan_id)
+        jsonSuites, testPlanInfo = self._get_tree_ids(plan_id)
 
         TestITAPI.get_id_project_by_name('test')
         TestITAPI.get_id_sections_on_project()
@@ -307,7 +307,7 @@ class MigrateTfsToTest():
         date_now = datetime.now().strftime('%Y-%m-%d')
         
         logging.info(f"Convert created JSON to XML")
-        def _recursive_fill_sections_and_tests(root_suites,root_element):
+        def _recursive_fill_sections_and_tests(root_suites):
             
             
             for _, suite in enumerate(root_suites):
@@ -325,10 +325,8 @@ class MigrateTfsToTest():
                 # for test in suite.get('tests',[]):
                 #     Section.text = test['title']
                 #     tree = ET.ElementTree(root)
-            return root_element
 
-
-        
+        _recursive_fill_sections_and_tests(jsonSuites)
         
 
 
