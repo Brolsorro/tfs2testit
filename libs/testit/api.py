@@ -103,7 +103,8 @@ class TestITAPI:
         id_project = self.testit_project_id if not id_project else id_project
         rsp = self._request(_RequestTypes.GET,
                       f'/api/v2/projects/{id_project}/sections')
-        first_section = rsp[0].get('id')
+        first_section = [r for r in rsp if not r['parentId']][0]
+        first_section = first_section.get('id')
         self.testit_section_id = first_section
         return first_section
 
