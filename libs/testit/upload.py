@@ -4,6 +4,7 @@ from utils.string_converters import replacer
 from typing import Union, List, Dict, Tuple
 from datetime import datetime
 from tqdm import tqdm
+import xml.etree.ElementTree as ET
 
 import logging
 
@@ -37,7 +38,7 @@ class MigrateTfsToTest():
             3:'Medium',
             4:'Lowest'
         }
-        self.readyForWrite:ET.ElementTree = None
+
         self.tfs_address = tfs_address
         self.tfs_organization = tfs_organization
         self.tfs_project = tfs_project
@@ -121,7 +122,7 @@ class MigrateTfsToTest():
             list: Список с распределенными шагами
         """
         case_id = kwargs.get('case_id','')
-        # logging.info(f'Обработка шагов теста № {case_id}')
+        logging.info(f'Обработка шагов теста № {case_id}')
         try:
             root = ET.fromstring(steps_string)
             steps = root

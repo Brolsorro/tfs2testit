@@ -1,7 +1,4 @@
-import json
 import logging
-from pkgutil import ImpImporter
-
 import xml.etree.ElementTree as ET
 
 
