@@ -227,7 +227,7 @@ class MigrateTfsToTest():
                 'name':fields.get('System.Title'),
                 'description':description,
                 'steps':steps,
-                'priority': fields.get('Microsoft.VSTS.Common.Priority',''),
+                'priority': fields.get('Microsoft.VSTS.Common.Priority',2),
                 'link': urlto
                 
             }
@@ -307,7 +307,7 @@ class MigrateTfsToTest():
 
         testdata['name'] = test.get('name', 'Неизвестный тест')
         testdata['description'] = test.get('description','')
-        testdata['priority'] = self.tabPriority.get(test.get('priority',''),'')
+        testdata['priority'] = self.tabPriority.get(test.get('priority',2))
         testdata['duration'] = 10000
         testdata['preconditionSteps'] = []
         testdata['postconditionSteps'] = []
