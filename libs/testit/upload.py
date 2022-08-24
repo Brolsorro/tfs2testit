@@ -124,8 +124,8 @@ class MigrateTfsToTest():
         Returns:
             list: Список с распределенными шагами
         """
-        case_id = kwargs.get('case_id','')
-        logging.info(f'Обработка шагов теста № {case_id}')
+        # case_id = kwargs.get('case_id','')
+        # logging.info(f'Обработка шагов теста № {case_id}')
         try:
             root = ET.fromstring(steps_string)
 
@@ -165,9 +165,15 @@ class MigrateTfsToTest():
         shar_rps = self.api_tfs.get_work_item(shared_steps_id)['response']
         sharedsteps_data = {}
         sharedsteps_data['name'] = shar_rps['fields']['System.Title']
-        sharedsteps_data['description'] = shar_rps['fields']['System.Title']
+        sharedsteps_data['description'] = shar_rps['fields'].get('System.Description','')
         _raw_steps = self._parse_steps(shar_rps['fields']['Microsoft.VSTS.TCM.Steps'])
-
+        sharedsteps_data['priority'] =  self.tabPriority[shar_rps['fields'].get('Microsoft.VSTS.Common.Priority',2)]
+        sharedsteps_data["tags"]= [
+                {
+                "name": "migrate"
+                }
+            ]
+        
         sharedsteps_data['steps'] = []
         for step in _raw_steps:  
             sharedsteps_data['steps'].append(
@@ -212,6 +218,7 @@ class MigrateTfsToTest():
             fields = test['fields']
             stepsString = fields.get('Microsoft.VSTS.TCM.Steps',caseId)
             stepsString = stepsString if type(stepsString) is str else stepsString
+            
             steps = self._parse_steps(stepsString,case_id=caseId)
             urlto = f"{self.tfs_address}/{self.tfs_organization}/{self.tfs_project}/_workitems?id={caseId}&_a=edit"
             description = fields.get('System.Description')
