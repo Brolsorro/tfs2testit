@@ -235,7 +235,7 @@ class MigrateTfsToTest():
             
             steps = self._parse_steps(stepsString,case_id=caseId)
             urlto = f"{self.tfs_address}/{self.tfs_organization}/{self.tfs_project}/_workitems?id={caseId}&_a=edit"
-            description = self._try_delete_tags_from_string(fields.get('System.Description'),'')
+            description = self._try_delete_tags_from_string(fields.get('System.Description',''))
             test = {
                 'id': str(caseId),
                 'name':fields.get('System.Title'),
