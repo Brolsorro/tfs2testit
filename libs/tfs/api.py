@@ -5,6 +5,7 @@ import base64
 import json
 import os, sys
 import logging
+import pathlib
 
 from pathlib import Path
 from requests import Response
@@ -21,6 +22,9 @@ class System_LinkTypes:
         Hierarchy_Reverse = 'System.LinkTypes.Hierarchy-Reverse'
         Hierarchy_Forward = 'System.LinkTypes.Hierarchy-Forward'
         Duplicate_Reverse = 'System.LinkTypes.Duplicate-Reverse'
+        Dependency_Reverse = 'System.LinkTypes.Dependency-Reverse'
+        Dependency_Forward = 'System.LinkTypes.Dependency-Forward'
+        Related = 'System.LinkTypes.Related'
 class Microsoft:
     VSTS = 'Microsoft.VSTS'
     
@@ -32,7 +36,9 @@ class Microsoft_VSTS_TCM:
         
 class Microsoft_VSTS_Common:
     Priority = 'Microsoft.VSTS.Common.Priority'
-        
+    TestedBy_Reverse = 'Microsoft.VSTS.Common.TestedBy-Reverse'
+    TestedBy_Forward = 'Microsoft.VSTS.Common.TestedBy-Forward'
+
 class Microsoft_VSTS_TestCase:
     SharedStepReferencedBy_Reverse = 'Microsoft.VSTS.TestCase.SharedStepReferencedBy-Reverse'
 

@@ -235,7 +235,14 @@ class MigrateTfsToTest():
 
             relations = []
             for col in test.get('relations',[]):
-                if System.LinkTypes in col['rel']:
+                condition = any([res in col['rel'] for res in
+                [
+                    System.LinkTypes,
+                    Microsoft_VSTS_Common.TestedBy_Reverse,
+                    Microsoft_VSTS_Common.TestedBy_Forward
+                ]])
+                
+                if condition:
                     url = col['url']
                     id_url = int(Path(url).stem)
                     element = self.api_tfs.get_work_item(id_url)['response']['fields']
@@ -415,7 +422,6 @@ class MigrateTfsToTest():
 
         date_now = datetime.now().strftime('%Y-%m-%d')
         
-        logging.info(f"Convert created JSON to XML")
         def _recursive_fill_sections_and_tests(root_suites,root_section):
             
 
