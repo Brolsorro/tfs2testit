@@ -1,17 +1,16 @@
-from hashlib import sha1
-from turtle import st
+import xml.etree.ElementTree as ET
+import logging
+
+
 from libs.testit.api import TestITAPI
-from libs.tfs.api import APITFS
-from utils.string_converters import replacer
+from libs.tfs.api import *
 from typing import Union, List, Dict, Tuple
 from datetime import datetime
 from tqdm import tqdm
 from uuid import UUID
 from bs4 import BeautifulSoup
 
-import xml.etree.ElementTree as ET
 
-import logging
 
 
 
@@ -173,7 +172,7 @@ class MigrateTfsToTest():
             except: ...
         return s
 
-    def _create_shared_steps_on_testit(self,api_testit:TestITAPI, shared_steps_id:Union[str,int]) -> UUID:
+    def _create_shared_steps_on_testit(self,api_testit:TestITAPI, shared_steps_id:Union[str,int], date_review:str) -> UUID:
         shared_steps_id = int(shared_steps_id) if type(shared_steps_id) is str else shared_steps_id
         
         shar_rps = self.api_tfs.get_work_item(shared_steps_id)['response']
@@ -208,13 +207,15 @@ class MigrateTfsToTest():
             }
         ]
         _attr_unigue_shared_steps_tfs = {self.ID_attr_tfsid: str(shared_steps_id)}
+        
+        sharedsteps_data['attributes'] = {
+                    self.ID_attr_date: date_review, **_attr_unigue_shared_steps_tfs}
 
-        sharedsteps_data['attributes'] = _attr_unigue_shared_steps_tfs
         rps = api_testit.create_shared_steps(sharedsteps_data,_attr_unigue_shared_steps_tfs)
         return rps['id']
 
     def _load_content_test(self, id_plan:Union[str,int],suite_id:Union[str,int]) -> list:
-        """Выгрузка тестов по набору тетстов
+        """Выгрузка тестов по набору тетстов из TFS
 
         Args:
             id_plan (Union[str,int]): ID плана
@@ -228,9 +229,28 @@ class MigrateTfsToTest():
         tests = []
         for case in testCaseIds:
             caseId = case
-            test = self.api_tfs.get_work_item(caseId)['response']
+            # aa = self.api_tfs.get_list_work_items(caseId)
+            test = self.api_tfs.get_list_work_items(caseId)['response']['value'][0]
             fields = test['fields']
-            stepsString = fields.get('Microsoft.VSTS.TCM.Steps',caseId)
+
+            relations = []
+            for col in test.get('relations',[]):
+                if System.LinkTypes in col['rel']:
+                    url = col['url']
+                    id_url = int(Path(url).stem)
+                    element = self.api_tfs.get_work_item(id_url)['response']['fields']
+                    tmp = dict()
+                
+                    tmp['title'] = f"{element[System.WorkItemType]}: {element[System.Title]}"
+                    tmp['url'] = f"{self.tfs_address}/{self.tfs_organization}/{self.tfs_project}/_workitems?id={id_url}&_a=edit"
+                    tmp['description'] = f"ID {element[System.WorkItemType]}: {id_url}"
+                    tmp['type'] = "Related"
+                    tmp['hasInfo'] = True
+             
+                    relations.append(tmp)
+            
+
+            stepsString = fields.get(Microsoft_VSTS_TCM.Steps,caseId)
             stepsString = stepsString if type(stepsString) is str else stepsString
             
             steps = self._parse_steps(stepsString,case_id=caseId)
@@ -241,10 +261,21 @@ class MigrateTfsToTest():
                 'name':fields.get('System.Title'),
                 'description':description,
                 'steps':steps,
-                'priority': fields.get('Microsoft.VSTS.Common.Priority',2),
-                'link': urlto
+                'priority': fields.get(Microsoft_VSTS_Common.Priority,2),
+                'link': [
+                        {
+                            'title': 'Ссылка на тест в TFS',
+                            'url': urlto,
+                            'description': f'ID тест: {caseId}',
+                            'type': "Related",
+                            "hasInfo": True
+
+                        },*relations
+            ]
+            
                 
             }
+
             tests.append(test)
         
         return tests
@@ -325,16 +356,7 @@ class MigrateTfsToTest():
         testdata['duration'] = 10000
         testdata['preconditionSteps'] = []
         testdata['postconditionSteps'] = []
-        testdata['links'] = [
-            {
-                'title': 'Ссылка на TFS',
-                'url': test.get('link'),
-                'description': 'link to tfs',
-                'type': "Related",
-                "hasInfo": True
-
-            }
-        ]
+        testdata['links'] = test['link']
         testdata["tags"]= [
                 {
                 "name": "migrate"
@@ -359,7 +381,7 @@ class MigrateTfsToTest():
                 )
             elif step.get('type') == 'ref':
                 tfs_shared_steps_id = step.get('ref')
-                shar_id = self._create_shared_steps_on_testit(Testit, tfs_shared_steps_id)
+                shar_id = self._create_shared_steps_on_testit(Testit, tfs_shared_steps_id,date_review)
                 testdata['steps'].append(
                     {
                         'workItemId' : shar_id

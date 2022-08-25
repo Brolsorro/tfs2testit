@@ -11,6 +11,31 @@ from requests import Response
 
 
 
+class System:
+    LinkTypes = 'System.LinkTypes'
+    WorkItemType = 'System.WorkItemType'
+    Title = 'System.Title'
+
+
+class System_LinkTypes:
+        Hierarchy_Reverse = 'System.LinkTypes.Hierarchy-Reverse'
+        Hierarchy_Forward = 'System.LinkTypes.Hierarchy-Forward'
+        Duplicate_Reverse = 'System.LinkTypes.Duplicate-Reverse'
+class Microsoft:
+    VSTS = 'Microsoft.VSTS'
+    
+class Microsoft_VSTS:
+    TCM = 'Microsoft.VSTS.TCM'
+
+class Microsoft_VSTS_TCM:
+    Steps = 'Microsoft.VSTS.TCM.Steps'
+        
+class Microsoft_VSTS_Common:
+    Priority = 'Microsoft.VSTS.Common.Priority'
+        
+class Microsoft_VSTS_TestCase:
+    SharedStepReferencedBy_Reverse = 'Microsoft.VSTS.TestCase.SharedStepReferencedBy-Reverse'
+
 class APITFS:
     VERSION_API = '4.1'
     ENCODING = 'utf-8'
