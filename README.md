@@ -1,3 +1,10 @@
+# Описание
+Утилита для переноса тестов из TFS в testIT через API или xml файл
+
+Через API: D:\Projects\tfs_tests_migration\libs\testit\upload.py 
+
+Через XML: D:\Projects\tfs_tests_migration\libs\tfs\converter.py
+
 # Запуск (скомпилированного)
 ```
 migration_tool.exe to-xml -i <ID-тест-плана> -pj <Название проекта> -ct <Название коллекции> -c Путь до сертификата, если нужен
